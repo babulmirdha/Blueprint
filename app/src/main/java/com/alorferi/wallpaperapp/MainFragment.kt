@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.jahir.blueprint.app.databinding.FragmentMainXBinding
@@ -31,9 +30,9 @@ class MainFragment : WallpapersFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.wallpapers.observe(viewLifecycleOwner) { wallpapers ->
-            val adapter = WallpaperAdapter(wallpapers) { imageUrl ->
+            val adapter = WallpaperAdapter(wallpapers) { wallpaper ->
                 val intent = Intent(requireContext(), FullscreenActivity::class.java)
-                intent.putExtra("image_url", imageUrl)
+                intent.putExtra(Wallpaper::class.simpleName, wallpaper)
                 startActivity(intent)
             }
 

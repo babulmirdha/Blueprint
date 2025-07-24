@@ -8,21 +8,37 @@ import dev.jahir.blueprint.app.databinding.ItemWallpaperXBinding
 
 class WallpaperAdapter(
     private val wallpapers: List<Wallpaper>,
-    private val onClick: (String) -> Unit
+    private val onClick: (Wallpaper) -> Unit
 ) : RecyclerView.Adapter<WallpaperAdapter.WallpaperViewHolder>() {
 
     inner class WallpaperViewHolder(private val binding: ItemWallpaperXBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(wallpaper: Wallpaper) {
-            binding.imageView.load(wallpaper.imageUrl) {
-                crossfade(true)
-            }
 
-            binding.imageView.setOnClickListener {
-                onClick(wallpaper.imageUrl)
+        fun bind(wallpaper: Wallpaper) {
+            when {
+                wallpaper.drawableResId != null -> {
+                    binding.imageView.load(wallpaper.drawableResId) {
+                        crossfade(true)
+                    }
+
+                    binding.imageView.setOnClickListener {
+                        onClick(wallpaper) // OR pass drawable id as String
+                    }
+                }
+
+                !wallpaper.imageUrl.isNullOrEmpty() -> {
+                    binding.imageView.load(wallpaper.imageUrl) {
+                        crossfade(true)
+                    }
+
+                    binding.imageView.setOnClickListener {
+                        onClick(wallpaper)
+                    }
+                }
             }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallpaperViewHolder {
         val binding = ItemWallpaperXBinding.inflate(LayoutInflater.from(parent.context), parent, false)

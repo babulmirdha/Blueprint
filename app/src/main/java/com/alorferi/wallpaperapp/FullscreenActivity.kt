@@ -3,17 +3,18 @@ package com.alorferi.wallpaperapp
 import android.annotation.SuppressLint
 import android.app.WallpaperManager
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.toBitmap
 import coil.ImageLoader
 import coil.load
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import dev.jahir.blueprint.app.databinding.ActivityFullscreenBinding
-//import com.alorferi.wallpaperapp.databinding.ActivityFullscreenBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,21 +33,42 @@ class FullscreenActivity : ComponentActivity() {
         binding = ActivityFullscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val imageUrl = intent.getStringExtra("image_url")
+        val wallpaper = intent.getSerializableExtra(Wallpaper::class.simpleName) as? Wallpaper
 
-        imageUrl?.let {
-            // Show image
-            binding.fullscreenImage.load(it)
+        wallpaper?.let { wp ->
+
+            // Load image
+            when {
+                wp.drawableResId != null -> binding.fullscreenImage.load(wp.drawableResId)
+                !wp.imageUrl.isNullOrEmpty() -> binding.fullscreenImage.load(wp.imageUrl)
+            }
 
             // Set wallpaper button
             binding.setWallpaperBtn.setOnClickListener {
-                setWallpaper(imageUrl)
+                when {
+                    wp.drawableResId != null -> {
+                        val drawable = ResourcesCompat.getDrawable(resources, wp.drawableResId, null)
+                        val bitmap = (drawable as BitmapDrawable).bitmap
+                        setWallpaperFromBitmap(bitmap)
+                    }
+
+                    !wp.imageUrl.isNullOrEmpty() -> {
+                        setWallpaperFromUrl(wp.imageUrl)
+                    }
+                }
             }
         }
+
     }
 
+    private fun setWallpaperFromBitmap(bitmap: Bitmap) {
+        val wallpaperManager = WallpaperManager.getInstance(this)
+        wallpaperManager.setBitmap(bitmap)
+    }
+
+
     @SuppressLint("MissingPermission")
-    private fun setWallpaper(imageUrl: String) {
+    private fun setWallpaperFromUrl(imageUrl: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val loader = ImageLoader(this@FullscreenActivity)
