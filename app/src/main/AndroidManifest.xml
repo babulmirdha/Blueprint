@@ -227,6 +227,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.alorferi.wallpaperapp.MainActivity"
+            android:exported="false" />
+
         <!-- DO NOT REMOVE !!! -->
         <!-- Required for files access !!! -->
         <provider

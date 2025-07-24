@@ -1,7 +1,9 @@
 package dev.jahir.blueprint.app
 
+import com.alorferi.wallpaperapp.MainFragment
 import com.github.javiersantos.piracychecker.PiracyChecker
 import dev.jahir.blueprint.ui.activities.BottomNavigationBlueprintActivity
+import dev.jahir.frames.ui.fragments.WallpapersFragment
 
 class MainActivity : BottomNavigationBlueprintActivity() {
 
@@ -14,7 +16,7 @@ class MainActivity : BottomNavigationBlueprintActivity() {
     override fun amazonInstallsEnabled(): Boolean = false
     override fun checkLPF(): Boolean = true
     override fun checkStores(): Boolean = true
-    override val isDebug: Boolean = BuildConfig.DEBUG
+    override val isDebug: Boolean = true
 
     /**
      * This is your app's license key. Get yours on Google Play Dev Console.
@@ -40,4 +42,7 @@ class MainActivity : BottomNavigationBlueprintActivity() {
 
     override fun defaultMaterialYouTheme(): Int = R.style.MyApp_Default_MaterialYou
     override fun amoledMaterialYouTheme(): Int = R.style.MyApp_Default_Amoled_MaterialYou
+
+    override val wallpapersFragment: WallpapersFragment?
+        get() = MainFragment()  // Return your custom fragment here
 }
