@@ -1,6 +1,6 @@
 package dev.jahir.blueprint.app
 
-import com.alorferi.wallpaperapp.MainFragment
+import com.alorferi.wallpaperapp.MyWallpapersFragment
 import com.github.javiersantos.piracychecker.PiracyChecker
 import dev.jahir.blueprint.ui.activities.BottomNavigationBlueprintActivity
 import dev.jahir.frames.ui.fragments.WallpapersFragment
@@ -44,5 +44,5 @@ class MainActivity : BottomNavigationBlueprintActivity() {
     override fun amoledMaterialYouTheme(): Int = R.style.MyApp_Default_Amoled_MaterialYou
 
     override val wallpapersFragment: WallpapersFragment?
-        get() = MainFragment()  // Return your custom fragment here
+        get() = MyWallpapersFragment()  // Return your custom fragment here
 }

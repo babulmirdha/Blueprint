@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import dev.jahir.blueprint.app.databinding.FragmentMainXBinding
+import dev.jahir.blueprint.app.databinding.FragmentMyWallpapersBinding
 import dev.jahir.frames.ui.fragments.WallpapersFragment
 
-class MainFragment : WallpapersFragment() {
+class MyWallpapersFragment : WallpapersFragment() {
 
-    private var _binding: FragmentMainXBinding? = null
+    private var _binding: FragmentMyWallpapersBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: WallpaperViewModel by viewModels()
@@ -22,7 +22,7 @@ class MainFragment : WallpapersFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainXBinding.inflate(inflater, container, false)
+        _binding = FragmentMyWallpapersBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,7 +31,7 @@ class MainFragment : WallpapersFragment() {
 
         viewModel.wallpapers.observe(viewLifecycleOwner) { wallpapers ->
             val adapter = WallpaperAdapter(wallpapers) { wallpaper ->
-                val intent = Intent(requireContext(), FullscreenActivity::class.java)
+                val intent = Intent(requireContext(), MyWallpaperFullscreenActivity::class.java)
                 intent.putExtra(Wallpaper::class.simpleName, wallpaper)
                 startActivity(intent)
             }

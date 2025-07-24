@@ -14,23 +14,23 @@ import coil.ImageLoader
 import coil.load
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import dev.jahir.blueprint.app.databinding.ActivityFullscreenBinding
+import dev.jahir.blueprint.app.databinding.ActivityMyWallpaperFullscreenBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class FullscreenActivity : ComponentActivity() {
+class MyWallpaperFullscreenActivity : ComponentActivity() {
 
-    private lateinit var binding: ActivityFullscreenBinding
+    private lateinit var binding: ActivityMyWallpaperFullscreenBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
 
-        binding = ActivityFullscreenBinding.inflate(layoutInflater)
+        binding = ActivityMyWallpaperFullscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val wallpaper = intent.getSerializableExtra(Wallpaper::class.simpleName) as? Wallpaper
@@ -71,8 +71,8 @@ class FullscreenActivity : ComponentActivity() {
     private fun setWallpaperFromUrl(imageUrl: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val loader = ImageLoader(this@FullscreenActivity)
-                val request = ImageRequest.Builder(this@FullscreenActivity)
+                val loader = ImageLoader(this@MyWallpaperFullscreenActivity)
+                val request = ImageRequest.Builder(this@MyWallpaperFullscreenActivity)
                     .data(imageUrl)
                     .allowHardware(false) // Try changing to true if fails
                     .build()
@@ -80,16 +80,16 @@ class FullscreenActivity : ComponentActivity() {
                 val result = loader.execute(request) as SuccessResult
                 val bitmap = result.drawable.toBitmap()
 
-                val wallpaperManager = WallpaperManager.getInstance(this@FullscreenActivity)
+                val wallpaperManager = WallpaperManager.getInstance(this@MyWallpaperFullscreenActivity)
                 wallpaperManager.setBitmap(bitmap)
 
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@FullscreenActivity, "Wallpaper set successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MyWallpaperFullscreenActivity, "Wallpaper set successfully", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@FullscreenActivity, "Failed: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@MyWallpaperFullscreenActivity, "Failed: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
         }

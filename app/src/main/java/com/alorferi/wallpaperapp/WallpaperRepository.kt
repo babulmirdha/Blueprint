@@ -26,8 +26,8 @@ class WallpaperRepository {
             Wallpaper(drawableResId = R.drawable.wallpaper_1),
             Wallpaper(drawableResId = R.drawable.wallpaper_2),
             Wallpaper(drawableResId = R.drawable.wallpaper_3),
-//            WallpaperX(imageUrl = "https://images.unsplash.com/photo-1495567720989-cebdbdd97913"),
-//            WallpaperX(imageUrl = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
+            Wallpaper(imageUrl = "https://images.unsplash.com/photo-1495567720989-cebdbdd97913"),
+            Wallpaper(imageUrl = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
         )
     }
 

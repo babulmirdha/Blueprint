@@ -228,7 +228,7 @@
         </activity>
 
         <activity
-            android:name="com.alorferi.wallpaperapp.FullscreenActivity"
+            android:name="com.alorferi.wallpaperapp.MyWallpaperFullscreenActivity"
             android:exported="false" />
 
 
