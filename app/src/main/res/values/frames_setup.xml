@@ -4,7 +4,7 @@
 
     <string name="wallpapers_json_url"></string>  <!-- CORRECT -->
 
-    <!--    This is the link for the JSON file where you have listed your wallpapers -->
+<!--    This is the link for the JSON file where you have listed your wallpapers -->
 <!--    <string name="json_url">http://192.168.0.245/frames/frames.json</string>-->
 <!--    <string name="json_url">https://jahir.dev/frames/frames.json</string>-->
 
