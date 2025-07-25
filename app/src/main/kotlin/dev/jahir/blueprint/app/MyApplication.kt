@@ -1,5 +1,6 @@
 package dev.jahir.blueprint.app
 
+import com.doublegum.gameboii.BuildConfig
 import dev.jahir.frames.ui.FramesApplication
 
 // TODO: Remove comment marks to enable

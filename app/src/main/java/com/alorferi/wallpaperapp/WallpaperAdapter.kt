@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import dev.jahir.blueprint.app.databinding.ItemWallpaperXBinding
+import com.doublegum.gameboii.databinding.ItemWallpaperXBinding
 
 class WallpaperAdapter(
     private val wallpapers: List<Wallpaper>,

@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import dev.jahir.blueprint.app.databinding.FragmentMyWallpapersBinding
+import com.doublegum.gameboii.databinding.FragmentMyWallpapersBinding
+
 import dev.jahir.frames.ui.fragments.WallpapersFragment
 
 class MyWallpapersFragment : WallpapersFragment() {

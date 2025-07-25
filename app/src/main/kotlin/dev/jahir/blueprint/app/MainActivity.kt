@@ -1,6 +1,7 @@
 package dev.jahir.blueprint.app
 
 import com.alorferi.wallpaperapp.MyWallpapersFragment
+import com.doublegum.gameboii.R
 import com.github.javiersantos.piracychecker.PiracyChecker
 import dev.jahir.blueprint.ui.activities.BottomNavigationBlueprintActivity
 import dev.jahir.frames.ui.fragments.WallpapersFragment

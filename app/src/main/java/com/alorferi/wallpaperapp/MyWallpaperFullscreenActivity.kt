@@ -14,7 +14,7 @@ import coil.ImageLoader
 import coil.load
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import dev.jahir.blueprint.app.databinding.ActivityMyWallpaperFullscreenBinding
+import com.doublegum.gameboii.databinding.ActivityMyWallpaperFullscreenBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

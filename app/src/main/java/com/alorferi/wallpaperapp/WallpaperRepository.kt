@@ -1,6 +1,7 @@
 package com.alorferi.wallpaperapp
 
-import dev.jahir.blueprint.app.R
+import com.doublegum.gameboii.R
+
 
 class WallpaperRepository {
 
