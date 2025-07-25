@@ -45,10 +45,12 @@ import dev.jahir.frames.ui.widgets.StatefulRecyclerView
 import dev.jahir.kuper.extensions.userWallpaper
 
 @SuppressLint("MissingPermission")
-class HomeFragment : Fragment(R.layout.fragment_home), HomeItemsListener {
+open class HomeFragment : Fragment(R.layout.fragment_home), HomeItemsListener {
 
     private val wallpaper: Drawable?
-        get() = activity?.userWallpaper
+        @SuppressLint("UseCompatLoadingForDrawables")
+        get() = context?.getDrawable(R.drawable.drawer_header)
+//        get() = activity?.userWallpaper
 
     private val staticWallpaper: Drawable?
         get() = activity?.let {

@@ -64,6 +64,7 @@ class HomeAdapter(
             notifyDataSetChanged()
         }
 
+    //Top Icons Preview
     var iconsPreviewList: ArrayList<Icon> = ArrayList()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
@@ -80,9 +81,12 @@ class HomeAdapter(
             notifyDataSetChanged()
         }
 
+
+    //More Apps
     private val appItems: ArrayList<HomeItem>
         get() = ArrayList(homeItems.filter { it.isAnApp })
 
+    //Links
     private val linkItems: ArrayList<HomeItem>
         get() = ArrayList(homeItems.filter { !it.isAnApp })
 
@@ -134,8 +138,9 @@ class HomeAdapter(
                         else R.layout.item_home_actions_big
                     )
                 )
-
+            //Summary: Icons & Templates
             OVERVIEW_SECTION -> CounterViewHolder(parent.inflate(R.layout.item_counter))
+            //More Apps
             MORE_APPS_SECTION, USEFUL_LINKS_SECTION ->
                 AppLinkViewHolder(parent.inflate(R.layout.item_home_app_link))
 

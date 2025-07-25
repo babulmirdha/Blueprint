@@ -139,6 +139,7 @@ abstract class BlueprintActivity : FramesActivity(), RequestCallback {
         }
         iconsViewModel.observe(this) {
             iconsCategoriesFragment.updateItems(it)
+            //FIXME: Icons => 15
             homeFragment?.updateIconsCount(iconsViewModel.iconsCount)
             homeViewModel?.postIconsCount(iconsViewModel.iconsCount)
         }

@@ -37,7 +37,10 @@ class IconsCategoriesViewModel(application: Application) : AndroidViewModel(appl
         get() {
             val icons = ArrayList<Icon>()
             iconsCategories.forEach { icons.addAll(it.getIcons()) }
-            return icons.distinctBy { it.resId }.size
+
+            val  size = icons.distinctBy { it.resId }.size
+
+            return size
         }
 
     private suspend fun loadCategoriesFromDrawable(): ArrayList<IconsCategory> {
@@ -84,6 +87,8 @@ class IconsCategoriesViewModel(application: Application) : AndroidViewModel(appl
         }
     }
 
+
+    //Load Icon Filters
     private suspend fun loadCategoriesFromIconPack(): ArrayList<IconsCategory> {
         val categories: ArrayList<IconsCategory> = ArrayList()
         return withContext(IO) {
@@ -97,6 +102,7 @@ class IconsCategoriesViewModel(application: Application) : AndroidViewModel(appl
                         if (iconRes != 0) {
                             icons.add(Icon(iconName.clean().blueprintFormat(), iconRes))
                         } else {
+                            //FIXME: Icon pack
                             reportIconNotFound(iconName, "icon_pack.xml", context.getAppName())
                         }
                     }
@@ -107,18 +113,25 @@ class IconsCategoriesViewModel(application: Application) : AndroidViewModel(appl
                         categories.add(category)
                     }
                 } catch (e: Exception) {
+                    e.printStackTrace()
                 }
             }
             categories
         }
     }
 
+    //FIXME: Load iconsCategoriesData: categories = 9
     fun loadIconsCategories() {
         val readFromDrawable = context.boolean(R.bool.xml_drawable_enabled)
         viewModelScope.launch {
             val categories =
-                if (readFromDrawable) loadCategoriesFromDrawable()
-                else loadCategoriesFromIconPack()
+                if (readFromDrawable) {
+                    loadCategoriesFromDrawable()
+                }
+                else {
+                    loadCategoriesFromIconPack()
+                }
+            Log.d("categories", categories.size.toString())
             iconsCategoriesData.postValue(categories)
         }
     }

@@ -3,6 +3,7 @@ package dev.jahir.blueprint.data.viewmodels
 import android.app.Application
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
@@ -146,7 +147,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun observeCounters(owner: LifecycleOwner, fragment: HomeFragment? = null) {
-        observeIconsCount(owner) { fragment?.updateIconsCount(it) }
+        observeIconsCount(owner) {
+            Log.d("Count", it.toString())
+            fragment?.updateIconsCount(it)
+        }
         observeWallpapersCount(owner) { fragment?.updateWallpapersCount(it) }
         observeKustomCount(owner) { fragment?.updateKustomCount(it) }
     }
